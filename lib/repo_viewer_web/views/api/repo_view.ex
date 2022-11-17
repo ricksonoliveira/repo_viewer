@@ -23,6 +23,6 @@ defmodule RepoViewerWeb.Api.RepoView do
   end
 
   defp generate_next_page(next_page, conn) do
-    Routes.api_repo_path(conn, :list_users, %{since: next_page}) <> "&per_page=15"
+    Routes.api_repo_path(conn, :list_users, %{since: next_page})
   end
 end
