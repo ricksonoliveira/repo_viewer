@@ -1,10 +1,10 @@
 defmodule RepoViewerWeb.Api.RepoView do
   use RepoViewerWeb, :view
 
-  def render("users_list.json", %{data: items, next_page: next_page}) do
+  def render("users_list.json", %{data: items, next_page: next_page, conn: conn}) do
     %{
       data: render_many(items, __MODULE__, "item.json", as: :item),
-      next_page: generate_next_page(next_page)
+      next_page: generate_next_page(next_page, conn)
     }
   end
 
@@ -22,7 +22,7 @@ defmodule RepoViewerWeb.Api.RepoView do
     %{message: message}
   end
 
-  defp generate_next_page(next_page) do
-    Routes.api_repo_path(URI.new!(""), :list_users, %{since: next_page}) <> "&per_page=15"
+  defp generate_next_page(next_page, conn) do
+    Routes.api_repo_path(conn, :list_users, %{since: next_page}) <> "&per_page=15"
   end
 end
