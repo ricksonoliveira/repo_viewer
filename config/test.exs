@@ -8,11 +8,12 @@ config :repo_viewer, RepoViewerWeb.Endpoint,
   server: false
 
 # In test we don't send emails.
-config :repo_viewer, RepoViewer.Mailer,
-  adapter: Swoosh.Adapters.Test
+config :repo_viewer, RepoViewer.Mailer, adapter: Swoosh.Adapters.Test
 
 # Print only warnings and errors during test
 config :logger, level: :warn
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :tesla, adapter: Tesla.Mock

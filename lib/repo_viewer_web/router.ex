@@ -20,6 +20,14 @@ defmodule RepoViewerWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", RepoViewerWeb.Api, as: :api do
+    pipe_through :api
+
+    get "/users", RepoController, :list_users
+    get "/users/:username/details", RepoController, :user_details
+    get "/users/:username/repos", RepoController, :user_repos
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", RepoViewerWeb do
   #   pipe_through :api
