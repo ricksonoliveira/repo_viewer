@@ -1,4 +1,7 @@
 defmodule RepoViewerWeb.Telemetry do
+  @moduledoc """
+  Module for "Telemetry".
+  """
   use Supervisor
   import Telemetry.Metrics
 
