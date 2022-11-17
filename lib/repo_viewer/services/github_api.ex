@@ -8,6 +8,9 @@ defmodule RepoViewer.Services.GithubApi do
   plug Tesla.Middleware.Headers, [{"user-agent", "Tesla"}]
   plug Tesla.Middleware.JSON
 
+  @doc """
+  Performs github api call to given endpoint.
+  """
   def perform_request(url) do
     with {:ok, response} <- get(url),
          status <- response.status,

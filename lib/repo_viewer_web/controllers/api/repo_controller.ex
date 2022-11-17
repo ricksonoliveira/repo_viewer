@@ -3,8 +3,8 @@ defmodule RepoViewerWeb.Api.RepoController do
 
   alias RepoViewer.Services.RepoService
 
-  def list_users(conn, %{"since" => since}) do
-    case RepoService.get_users(since) do
+  def list_users(conn, params) do
+    case RepoService.get_users(Map.get(params, "since", 0)) do
       {:ok, users, next_page} ->
         conn
         |> put_status(:ok)
@@ -12,7 +12,7 @@ defmodule RepoViewerWeb.Api.RepoController do
           "next_page",
           Routes.api_repo_path(conn, :list_users, %{since: next_page})
         )
-        |> render("users_list.json", %{data: users, next_page: next_page})
+        |> render("users_list.json", %{data: users, next_page: next_page, conn: conn})
 
       {:error, message} ->
         conn
