@@ -19,7 +19,7 @@ defmodule RepoViewerWeb.Api.RepoControllerTest do
 
       assert response = json_response(conn, 200)
       assert response["data"] |> length() > 0
-      assert response["next_page"] == "/api/users?since=17&per_page=15"
+      assert response["next_page"] == "/api/users?since=17"
     end
 
     test "user_details/2 should return user details successfully",
